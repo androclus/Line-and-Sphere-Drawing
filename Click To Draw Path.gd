@@ -41,7 +41,7 @@ func get_mouse_pos():
 	return null
 
 func _init_mouse_line():
-	mouse_line = Draw3D.line(Vector3.ZERO, Vector3.ZERO, Color.BLACK)
+	mouse_line = await Draw3D.line(Vector3.ZERO, Vector3.ZERO, Color.BLACK)
 		
 func _update_mouse_line():
 	var mouse_pos = get_mouse_pos()
@@ -58,14 +58,14 @@ func _draw_point_and_line()->void:
 	var mouse_pos = get_mouse_pos()
 	if mouse_pos != null:
 		var mouse_pos_V3:Vector3 = mouse_pos
-		points.append(Draw3D.point(mouse_pos_V3,0.05))
+		points.append(await Draw3D.point(mouse_pos_V3,0.05))
 		
 		#If there are at least 2 points...
 		if points.size() > 1:
 			#Draw a line from the position of the last point placed to the position of the second to last point placed
 			var point1 = points[points.size()-1]
 			var point2 = points[points.size()-2]
-			var line = Draw3D.line(point1.position, point2.position)
+			var line = await Draw3D.line(point1.position, point2.position)
 			lines.append(line)
 
 func _clear_points_and_lines()->void:
